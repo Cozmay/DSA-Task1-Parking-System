@@ -1,6 +1,5 @@
 # Part (b): Data Structures and Reasons for Their Use
 
-These are the structures used in the website (`app.py`).
 
 | Module / situation | Data structure | How it is used in the program | Reason |
 |---|---|---|---|
