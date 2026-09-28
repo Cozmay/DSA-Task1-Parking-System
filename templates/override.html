@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Override{% endblock %}
+{% block content %}
+<h2>Exception override</h2>
+<p>
+    Use this when payment was made but not recorded, for an emergency
+    (for example an ambulance), or when the barrier cannot open after a valid payment.
+    A supervisor or manager should confirm.
+</p>
+
+<form method="post">
+    <label for="plate_number">Plate number</label>
+    <input id="plate_number" name="plate_number" type="text"
+           value="{{ pending.plate_number if pending else '' }}" required>
+
+    <label for="staff_id">Staff confirming the override</label>
+    <select id="staff_id" name="staff_id" required>
+        <option value="">-- select staff --</option>
+        {% for person in staff %}
+        <option value="{{ person.staff_id }}">{{ person.name }} ({{ person.role }})</option>
+        {% endfor %}
+    </select>
+
+    <label for="payment_ref">Payment reference (optional)</label>
+    <input id="payment_ref" name="payment_ref" type="text" placeholder="M-Pesa code, if any">
+
+    <label for="reason">Reason</label>
+    <textarea id="reason" name="reason" rows="3" required></textarea>
+
+    <button type="submit">Confirm override and open barrier</button>
+</form>
+{% endblock %}

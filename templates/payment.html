@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Payment{% endblock %}
+{% block content %}
+<h2>Payment collection</h2>
+
+<div class="summary">
+    <p><strong>Plate:</strong> {{ pending.plate_number }}</p>
+    <p><strong>Slot:</strong> {{ pending.slot_id }}</p>
+    <p><strong>Entry:</strong> {{ pending.entry_time }}</p>
+    <p><strong>Exit:</strong> {{ pending.exit_time }}</p>
+    <p><strong>Duration:</strong> {{ pending.duration_text }}</p>
+    <p class="fee"><strong>Amount due:</strong> KES {{ "%.2f"|format(pending.fee) }}</p>
+</div>
+
+<p>The barrier stays closed until payment is confirmed. Choose M-Pesa, card, or cash.</p>
+
+<form method="post">
+    <label for="payment_method">Payment method</label>
+    <select id="payment_method" name="payment_method" required>
+        <option value="">-- select --</option>
+        <option value="M-Pesa">M-Pesa</option>
+        <option value="card">Card</option>
+        <option value="cash">Cash</option>
+    </select>
+
+    <label for="mpesa_phone">M-Pesa phone number (required if paying by M-Pesa)</label>
+    <input id="mpesa_phone" name="mpesa_phone" type="text" placeholder="e.g. 0712345678">
+    <p class="hint">This is a class demo: we pretend an STK push was sent to that number.</p>
+
+    <button type="submit" name="action" value="pay">Confirm payment (opens barrier)</button>
+    <button type="submit" name="action" value="fail" class="secondary">Simulate failed payment</button>
+    <button type="submit" name="action" value="record_fail" class="secondary">Simulate: paid but not recorded</button>
+    <button type="submit" name="action" value="barrier_fail" class="secondary">Simulate: barrier failed to open</button>
+</form>
+{% endblock %}

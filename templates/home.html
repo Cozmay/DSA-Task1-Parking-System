@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Slot Board{% endblock %}
+{% block content %}
+<h2>Slot monitoring</h2>
+<p>{{ free_count }} free slot(s) out of {{ slots|length }}.</p>
+
+<div class="slot-grid">
+    {% for slot in slots %}
+        <div class="slot {{ slot.status }}">
+            <strong>Slot {{ slot.slot_id }}</strong>
+            <span>{{ slot.status }}</span>
+        </div>
+    {% endfor %}
+</div>
+
+<section>
+    <h3>Parked vehicles</h3>
+    {% if parked %}
+    <table>
+        <tr>
+            <th>Plate</th>
+            <th>Slot</th>
+            <th>Entry time</th>
+        </tr>
+        {% for car in parked %}
+        <tr>
+            <td>{{ car.plate_number }}</td>
+            <td>{{ car.slot_id }}</td>
+            <td>{{ car.entry_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No cars are parked right now.</p>
+    {% endif %}
+</section>
+
+<section>
+    <h3>Waiting queue</h3>
+    {% if waiting %}
+    <ol>
+        {% for plate in waiting %}
+        <li>{{ plate }}</li>
+        {% endfor %}
+    </ol>
+    {% else %}
+    <p>No cars are waiting.</p>
+    {% endif %}
+</section>
+{% endblock %}

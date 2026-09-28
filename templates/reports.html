@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block content %}
+<h2>Administrative reports</h2>
+
+<form method="post">
+    <label for="period">Report period</label>
+    <select id="period" name="period">
+        <option value="daily" {% if period == 'daily' %}selected{% endif %}>Daily</option>
+        <option value="weekly" {% if period == 'weekly' %}selected{% endif %}>Weekly</option>
+        <option value="monthly" {% if period == 'monthly' %}selected{% endif %}>Monthly</option>
+    </select>
+    <button type="submit">Show report</button>
+</form>
+<p><a href="{{ url_for('reports_export', period=period) }}">Export CSV</a></p>
+
+<div class="summary">
+    <p><strong>Period:</strong> {{ label }}</p>
+    <p><strong>Total revenue:</strong> KES {{ "%.2f"|format(total_revenue) }}</p>
+    <p><strong>Total vehicles that paid and exited:</strong> {{ total_vehicles }}</p>
+    <p><strong>Total overrides:</strong> {{ total_overrides }}</p>
+</div>
+
+<h3>Transactions</h3>
+{% if transactions %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Plate</th>
+        <th>Exit time</th>
+        <th>Amount</th>
+        <th>Method</th>
+    </tr>
+    {% for row in transactions %}
+    <tr>
+        <td>{{ row.transaction_id }}</td>
+        <td>{{ row.plate_number }}</td>
+        <td>{{ row.exit_time }}</td>
+        <td>KES {{ "%.2f"|format(row.amount_paid) }}</td>
+        <td>{{ row.payment_method }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No payments in this period.</p>
+{% endif %}
+
+<h3>Overrides</h3>
+{% if overrides %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Plate</th>
+        <th>Staff</th>
+        <th>Role</th>
+        <th>Reason</th>
+        <th>Time</th>
+    </tr>
+    {% for row in overrides %}
+    <tr>
+        <td>{{ row.override_id }}</td>
+        <td>{{ row.plate_number }}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.role }}</td>
+        <td>{{ row.reason }}</td>
+        <td>{{ row.timestamp }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No overrides in this period.</p>
+{% endif %}
+{% endblock %}

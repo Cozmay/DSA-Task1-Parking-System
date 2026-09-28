@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Barrier Open{% endblock %}
+{% block content %}
+<h2>Exit barrier</h2>
+<div class="barrier-open">
+    <p>BARRIER OPEN</p>
+    <p>{{ paid.plate_number }} may leave.</p>
+    <p>Paid KES {{ "%.2f"|format(paid.fee) }} via {{ paid.payment_method }}.</p>
+    {% if paid.payment_method == 'M-Pesa' and paid.mpesa_phone %}
+    <p>M-Pesa number used: {{ paid.mpesa_phone }}</p>
+    {% endif %}
+</div>
+<p><a href="{{ url_for('home') }}">Back to slot board</a></p>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Kenya Parking System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Modern Parking System</h1>
+        <p class="subtitle">DSA Task 1 — Kenya</p>
+        <nav>
+            <a href="{{ url_for('home') }}">Slots</a>
+            <a href="{{ url_for('entry') }}">Entry</a>
+            <a href="{{ url_for('exit_vehicle') }}">Exit &amp; Pay</a>
+            <a href="{{ url_for('override') }}">Override</a>
+            <a href="{{ url_for('reports') }}">Reports</a>
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Student assignment — Flask, SQLite, HTML and CSS</p>
+    </footer>
+</body>
+</html>

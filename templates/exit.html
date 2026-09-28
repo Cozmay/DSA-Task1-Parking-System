@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Exit{% endblock %}
+{% block content %}
+<h2>Exit — duration and fee</h2>
+<p>Look up the car by plate number. If the plate is missing, search by slot number instead.</p>
+
+<form method="post">
+    <label for="plate_number">Plate number</label>
+    <input id="plate_number" name="plate_number" type="text" placeholder="e.g. KDA 123A">
+
+    <label for="slot_id">Slot number (only if plate is not found)</label>
+    <input id="slot_id" name="slot_id" type="number" min="1">
+
+    <button type="submit">Calculate fee</button>
+</form>
+{% endblock %}
