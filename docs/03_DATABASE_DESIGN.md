@@ -15,9 +15,6 @@ Normalization keeps each kind of fact in its own table:
 
 Foreign keys link those tables without copying names and roles onto every row.
 
-Engine: **SQLite** (`parking.db`), created by `db.py`.
-
----
 
 ## Tables
 
@@ -53,9 +50,6 @@ This table holds cars **currently in the lot**. After a successful exit the row 
 | amount_paid | REAL | |
 | payment_method | TEXT (`M-Pesa` / `card` / `cash`) | |
 
-**Adjustment from the assignment sheet:** the sheet used `vehicle_id` as a foreign key to `Vehicles`. That conflicts with Module 6, which deletes the Vehicles row after payment. SQLite would then either block the delete or wipe the payment history.
-
-The working design stores `plate_number` and `slot_id` on the transaction as well, and does **not** use ON DELETE CASCADE. Reports can still total revenue after the car has left.
 
 ### Rates
 
@@ -75,7 +69,7 @@ Seeded bands (Kenya shillings):
 | 2 | 50 |
 | 4 | 100 |
 | 6 | 300 |
-| 999 | 500 |
+| 10 | 500 |
 
 ### Staff
 
