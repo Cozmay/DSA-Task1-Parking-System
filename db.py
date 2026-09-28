@@ -1,4 +1,3 @@
-"""SQLite helpers for the parking system."""
 
 import sqlite3
 from pathlib import Path
