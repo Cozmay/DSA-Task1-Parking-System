@@ -80,7 +80,7 @@ def init_db():
                 (2, 50),
                 (4, 100),
                 (6, 300),
-                (999, 500),
+                (10, 500),
             ],
         )
 
@@ -89,9 +89,9 @@ def init_db():
         conn.executemany(
             "INSERT INTO Staff (name, role) VALUES (?, ?)",
             [
-                ("Jane Mwangi", "attendant"),
-                ("Peter Otieno", "supervisor"),
-                ("Mary Wanjiku", "manager"),
+                ("Kellen Faith", "attendant"),
+                ("Izary Nelson", "supervisor"),
+                ("Norah Mutheu", "manager"),
             ],
         )
 
