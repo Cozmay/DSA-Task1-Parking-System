@@ -1,8 +1,5 @@
 # Part (a): Algorithms for Each Module
 
-These algorithms match the assignment document. The website in `app.py` follows the same steps. A few small adjustments are marked so the system can actually run with SQLite.
-
----
 
 ## 1. Entry Lane Control Module
 
@@ -19,9 +16,6 @@ START
 END
 ```
 
-Website: `entry()` in `app.py`.
-
----
 
 ## 2. Slot Monitoring & Display Module
 
@@ -35,9 +29,6 @@ START
 END
 ```
 
-Website: home page `/`. After entry, exit, or override the browser is redirected here so the board refreshes.
-
----
 
 ## 3. Slot Allocation Module
 
@@ -54,9 +45,6 @@ START
 END
 ```
 
-Website: `slot_allocation()`.
-
----
 
 ## 4. Duration & Fee Computation Module
 
@@ -78,11 +66,6 @@ START
 END
 ```
 
-Website: `exit_vehicle()` then `lookup_fee_from_rates()`. Fees are stored in the Rates table, not hard-coded in the fee function, so management can change them later.
-
-The entry form has an optional "hours already parked" field. That is only for class demo, so you can test the paid bands without waiting in real time.
-
----
 
 ## 5. Payment Collection Module
 
@@ -104,7 +87,6 @@ START
 END
 ```
 
-**Adjustment:** the assignment listed `vehicle_id` only. The website also stores `plate_number` and `slot_id` on the transaction because the next module deletes the Vehicles row. Without those extra fields, reports would lose the plate after exit.
 
 M-Pesa is included as a real choice. This is a student demo, so it does not call Safaricom. The driver enters a phone number (as if an STK push was sent). Confirming payment is what allows the barrier to open.
 
@@ -126,9 +108,6 @@ START
 END
 ```
 
-Website: `exit_barrier_control()` and the `/barrier` page. The barrier does **not** open if payment was not confirmed and recorded.
-
----
 
 ## 7. Exception Handling Module
 
@@ -169,7 +148,6 @@ START
 END
 ```
 
----
 
 ## 8. Administrative Reporting Module
 
@@ -204,4 +182,3 @@ START
 END
 ```
 
-Website: `/reports` and `/reports/export`.
