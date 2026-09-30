@@ -201,7 +201,6 @@ def entry():
     """Module 1: Entry Lane Control, then Module 3 if a slot is free."""
     if request.method == "POST":
         plate = request.form.get("plate_number", "").strip().upper()
-        demo_hours = request.form.get("demo_hours", "0").strip() or "0"
 
         if not plate:
             flash("Please enter a plate number.", "error")
@@ -218,12 +217,7 @@ def entry():
             flash("That vehicle is already in the waiting queue.", "error")
             return redirect(url_for("entry"))
 
-        try:
-            extra = float(demo_hours)
-        except ValueError:
-            extra = 0
-
-        entry_time = now() - timedelta(hours=extra)
+        entry_time = now()
 
     
         slots = get_slots_list(conn)
