@@ -1,6 +1,6 @@
 # DSA Task 1 — Modern Parking System (Kenya)
 
-Student website for a class assignment: **HTML/CSS frontend**, **Python (Flask) backend**, **SQLite database**.
+Morden parking system: **HTML/CSS frontend**, **Python (Flask) backend**, **SQLite database**.
 
 The three written parts of the task are in `docs/`:
 
